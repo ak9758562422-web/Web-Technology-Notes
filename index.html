@@ -5,6 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Web Technology CS35302 unit-wise syllabus notes for Quantum School of Technology.">
   <title>Web Technology | Unit-wise Notes</title>
+  <script>
+    (function () {
+      var saved = null;
+      try { saved = localStorage.getItem('theme'); } catch (e) {}
+      var dark = saved ? saved === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+    })();
+  </script>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -19,6 +27,7 @@
       <a href="#units" class="nav-link">All Units</a>
       <a href="#about" class="nav-link">About</a>
     </nav>
+    <button class="theme-toggle" id="themeToggle" aria-label="Switch to dark mode">🌙</button>
   </header>
 
   <main>
@@ -32,16 +41,68 @@
           <span class="course-chip">5 Units <i>•</i> 36 teaching hours</span>
         </div>
       </div>
-      <div class="hero-art" aria-label="Illustration of a browser window">
-        <div class="browser-window">
-          <div class="browser-bar"><i></i><i></i><i></i><span>www.learn-web.dev</span></div>
-          <div class="browser-content">
-            <div class="code-line wide"></div><div class="code-line mid"></div>
-            <div class="browser-cards"><b>&lt;/&gt;</b><b>CSS</b><b>JS</b></div>
-            <div class="code-line mid"></div><div class="code-line short"></div>
-          </div>
-        </div>
-        <div class="float-tag tag-html">HTML</div><div class="float-tag tag-css">CSS</div><div class="float-tag tag-js">JS</div>
+      <div class="hero-art">
+        <svg viewBox="0 0 460 320" role="img" aria-label="Browser window with HTML, CSS and JavaScript badges">
+          <defs>
+            <filter id="softShadow" x="-20%" y="-20%" width="140%" height="150%">
+              <feDropShadow dx="0" dy="14" stdDeviation="14" flood-color="#273c70" flood-opacity="0.22"/>
+            </filter>
+            <filter id="badgeShadow" x="-30%" y="-30%" width="160%" height="170%">
+              <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#000" flood-opacity="0.25"/>
+            </filter>
+            <linearGradient id="gHtml" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#ff8a4c"/><stop offset="1" stop-color="#e5532d"/>
+            </linearGradient>
+            <linearGradient id="gCss" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#4f8dff"/><stop offset="1" stop-color="#2a56d6"/>
+            </linearGradient>
+            <linearGradient id="gJs" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#ffd84d"/><stop offset="1" stop-color="#f0b400"/>
+            </linearGradient>
+          </defs>
+
+          <!-- browser window -->
+          <g transform="rotate(-4 230 160)" filter="url(#softShadow)">
+            <rect class="art-window" x="55" y="45" width="350" height="225" rx="18"/>
+            <path class="art-bar" d="M55 63a18 18 0 0 1 18-18h314a18 18 0 0 1 18 18v28H55z"/>
+            <circle cx="80" cy="68" r="5" fill="#ff6b6b"/>
+            <circle cx="98" cy="68" r="5" fill="#ffc94d"/>
+            <circle cx="116" cy="68" r="5" fill="#4cd08a"/>
+            <rect class="art-url" x="140" y="58" width="180" height="20" rx="10"/>
+            <text class="art-url-text" x="230" y="72" text-anchor="middle" font-size="10">www.learn-web.dev</text>
+
+            <rect class="art-line" x="82" y="115" width="230" height="10" rx="5"/>
+            <rect class="art-line" x="82" y="137" width="150" height="10" rx="5"/>
+            <rect class="art-card" x="82" y="168" width="82" height="62" rx="12"/>
+            <rect class="art-card" x="176" y="168" width="82" height="62" rx="12"/>
+            <rect class="art-card" x="270" y="168" width="82" height="62" rx="12"/>
+            <rect class="art-line" x="82" y="243" width="110" height="8" rx="4"/>
+          </g>
+
+          <!-- floating badges -->
+          <g transform="translate(70 62)">
+            <g class="float float-a" filter="url(#badgeShadow)">
+              <path d="M0 -40 L35 -26 L30 22 L0 42 L-30 22 L-35 -26 Z" fill="url(#gHtml)"/>
+              <text x="0" y="-2" text-anchor="middle" font-size="19" font-weight="800" fill="#fff" font-family="monospace">&lt;/&gt;</text>
+              <text x="0" y="20" text-anchor="middle" font-size="11" font-weight="800" fill="#fff">HTML</text>
+            </g>
+          </g>
+
+          <g transform="translate(398 112)">
+            <g class="float float-b" filter="url(#badgeShadow)">
+              <path d="M0 -40 L35 -26 L30 22 L0 42 L-30 22 L-35 -26 Z" fill="url(#gCss)"/>
+              <text x="0" y="-2" text-anchor="middle" font-size="19" font-weight="800" fill="#fff" font-family="monospace">{ }</text>
+              <text x="0" y="20" text-anchor="middle" font-size="11" font-weight="800" fill="#fff">CSS</text>
+            </g>
+          </g>
+
+          <g transform="translate(160 268)">
+            <g class="float float-c" filter="url(#badgeShadow)">
+              <path d="M0 -40 L35 -26 L30 22 L0 42 L-30 22 L-35 -26 Z" fill="url(#gJs)"/>
+              <text x="0" y="8" text-anchor="middle" font-size="26" font-weight="800" fill="#3a2e00">JS</text>
+            </g>
+          </g>
+        </svg>
       </div>
     </section>
 
@@ -91,6 +152,7 @@
     <p>CS35302 · CSE · Quantum School of Technology</p>
     <a href="#home">Back to top ↑</a>
   </footer>
+  <script src="data.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
